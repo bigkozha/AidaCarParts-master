@@ -26,24 +26,37 @@ namespace AidaCarParts.Controllers.api
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetPartsByPageNumberAsync(
-        [FromQuery] int pageSize = 16,
+        [FromQuery] int pageSize = 15,
         [FromQuery] int pageIndex = 0,
-        [FromQuery] int sectionIndex = 2)
+        [FromQuery] int? sectionIndex = null,
+        [FromQuery] string searchWord = null)
         {
-            var totalItems = await _context.Parts
-            .Where(p => p.SectionAndSubsectionId == sectionIndex)
-            .LongCountAsync();
+            var itemsOnPage = _context.Parts.AsQueryable();
 
-            var itemsOnPage = await _context.Parts
-                .Where(p => p.SectionAndSubsectionId == sectionIndex)
+            if (sectionIndex != null)
+            {
+                itemsOnPage = itemsOnPage
+                    .Where(p => p.SectionAndSubsectionId == sectionIndex);
+            }
+
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                itemsOnPage = itemsOnPage
+                    .Where(i => i.PartName.Contains(searchWord));
+            }
+
+            var totalItems = await itemsOnPage
+                .LongCountAsync();
+
+            var resultCollection = await itemsOnPage
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
                 .ToListAsync();
 
             var result = new
             {
-                totalItems,
-                itemsOnPage
+                totalItems = totalItems,
+                itemsOnPage = resultCollection
             };
 
             return new JsonResult(result);
