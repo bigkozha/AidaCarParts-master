@@ -48,8 +48,7 @@ namespace AidaCarParts.Controllers.api
 
             var response = new
             {
-                access_token = encodedJwt,
-                username = identity.Name
+                access_token = encodedJwt
             };
 
             return new JsonResult(response);
