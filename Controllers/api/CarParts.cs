@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AidaCarParts.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AidaCarParts.Controllers.api
 {
@@ -21,6 +22,7 @@ namespace AidaCarParts.Controllers.api
             _context = new Context();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetPartsByPageNumber")]
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.OK)]

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +34,12 @@ namespace AidaCarParts
                         options.RequireHttpsMetadata = false;
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
+                            ValidateIssuer = true,
+                            ValidIssuer = AuthOptions.ISSUER,
+                            ValidateAudience = true,
+                            ValidAudience = AuthOptions.AUDIENCE,
                             ValidateLifetime = true,
+ 
                             IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                             ValidateIssuerSigningKey = true,
                         };
