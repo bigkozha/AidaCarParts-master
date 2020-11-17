@@ -17,9 +17,9 @@ namespace AidaCarParts.Controllers.api
     {
         private readonly Context _context;
 
-        public CarParts()
+        public CarParts(Context context)
         {
-            _context = new Context();
+            _context = context;
         }
 
         [Authorize]
