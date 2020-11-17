@@ -1,5 +1,6 @@
 ﻿using AidaCarParts.Auth;
 using AidaCarParts.Models;
+using AidaCarParts.Spa;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,10 +26,6 @@ namespace AidaCarParts
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
-            services.AddSpaStaticFiles(configuration: options =>
-            {
-                options.RootPath = "wwwwroot";
-            });
             services.AddControllers();
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
             {
@@ -55,7 +52,7 @@ namespace AidaCarParts
                         };
                     });
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,9 +79,10 @@ namespace AidaCarParts
             app.UseSpaStaticFiles();
             app.UseSpa(configuration: builder =>
             {
+                builder.Options.SourcePath = "client-app";
                 if (env.IsDevelopment())
                 {
-                    builder.UseProxyToSpaDevelopmentServer("https://localhost:8080");
+                    builder.UseVueDevelopmentServer();
                 }
             });
         }
