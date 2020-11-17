@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const APIurl = '/api';
+const APIurl = '/';
 
 export default new Vuex.Store({
   state: {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
   },
   actions: {
     getPartsByPageNumber: ({ commit }, searchParams) => {
-      axios.get(`${APIurl}/CarParts/GetPartsByPageNumber/`, {
+      axios.get(`$CarParts/GetPartsByPageNumber/`, {
         params: {
           pageIndex: searchParams.page,
           sectionIndex: searchParams.sectionIndex,
@@ -48,7 +48,7 @@ export default new Vuex.Store({
     },
     /* eslint-disable no-unused-vars */
     editPartById: ({ commit }, id) => {
-      axios.get(`${APIurl}/CarParts/GetPartsByPageNumber/`, {
+      axios.get(`CarParts/GetPartsByPageNumber/`, {
         params: {
         }
       })
@@ -60,7 +60,7 @@ export default new Vuex.Store({
     },
     /* eslint-enable no-unused-vars */
     login: ({ commit }, user) => {
-      axios.post(`${APIurl}/Users/Login/`, {
+      axios.post(`/Users/Login/`, {
         password: user.password
       }).then((response) => {
         const token = `Bearer ${response.data.access_token}`;

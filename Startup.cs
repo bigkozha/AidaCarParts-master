@@ -27,14 +27,6 @@ namespace AidaCarParts
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
             services.AddControllers();
-            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
-            {
-                builder
-                .WithOrigins("https://localhost:5001")
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials();
-            }));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
@@ -63,7 +55,6 @@ namespace AidaCarParts
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("ApiCorsPolicy");
             app.UseHttpsRedirection();
 
             app.UseRouting();
