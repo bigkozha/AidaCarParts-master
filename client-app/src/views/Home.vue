@@ -69,7 +69,6 @@
                 v-bind:note="n.note"
                 v-bind:unitOfMeasure="n.unitOfMeasure"
                 v-bind:volume="n.volume"
-                v-bind:weigth="n.weigth"
                 v-bind:availibility="n.availibility"
                 v-bind:cost="n.cost"
                 v-bind:oem="n.oem"

@@ -16,6 +16,7 @@
                       label="Пароль"
                       counter
                       @click:append="show = !show"
+                      @keydown.enter="login"
                     ></v-text-field>
                   </v-col>
                   <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
@@ -56,8 +57,8 @@ export default {
       this.$store
         .dispatch("login", { password })
         .then(() => {
-          if (this.$store.getters.isLoggedIn) {
-            this.$router.push("/");
+            if (this.$store.getters.isLoggedIn) {
+              this.$router.push({ path: "/" });
           }
         })
         .catch((err) => console.log(err));
