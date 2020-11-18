@@ -22,7 +22,6 @@ namespace AidaCarParts.Controllers.api
             _context = context;
         }
 
-        [Authorize]
         [HttpGet]
         [Route("GetPartsByPageNumber")]
         [ProducesResponseType(typeof(object), (int)HttpStatusCode.OK)]

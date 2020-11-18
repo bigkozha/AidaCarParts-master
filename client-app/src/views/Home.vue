@@ -78,6 +78,7 @@
                 v-bind:costNumber="n.costNumber"
                 v-bind:picSrc="n.picSrc"
                 v-bind:partCode="n.partCode"
+                v-bind:weight="n.weight"
                 @editClicked="editClicked"
               >
               </CarPartCard>
@@ -143,6 +144,12 @@
                   <v-text-field
                     label="Ед. измерения"
                     v-model="editItem.unitOfMeasure"
+                  ></v-text-field>
+                </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                  <v-text-field
+                    label="Вес"
+                    v-model="editItem.weight"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">

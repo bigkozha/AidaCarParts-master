@@ -21,11 +21,11 @@
     <div v-show="show">
       <v-divider></v-divider>
       <v-card-text>
-        Применение: {{ note }}<br />
-        Ед. измерения: {{ unitOfMeasure }}<br />
-        Объем: {{ volume }}<br />
-        Вес: {{ weight }}<br />
-        Доступность: {{ availibility }}<br />
+          Применение: {{ note }}<br />
+          Ед. измерения: {{ unitOfMeasure }}<br />
+          Объем: {{ volume }}<br />
+          Вес: {{ weight }}<br />
+          Доступность: {{ availibility }}<br />
       </v-card-text>
       <v-btn color="orange lighten-2" text @click="editClicked" v-if="isAdmin"
         >Редактировать

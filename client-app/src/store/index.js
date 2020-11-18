@@ -32,14 +32,15 @@ export default new Vuex.Store({
   },
   actions: {
     getPartsByPageNumber: ({ commit }, searchParams) => {
-      axios.get(`$CarParts/GetPartsByPageNumber/`, {
+      axios.get(`api/CarParts/GetPartsByPageNumber/`, {
         params: {
           pageIndex: searchParams.page,
           sectionIndex: searchParams.sectionIndex,
           searchWord: searchParams.searchWord,
         },
       })
-        .then(response => {
+          .then(response => {
+            console.log(response.data)
           commit('setParts', response.data);
         })
         .catch(e => {
@@ -48,7 +49,7 @@ export default new Vuex.Store({
     },
     /* eslint-disable no-unused-vars */
     editPartById: ({ commit }, id) => {
-      axios.get(`CarParts/GetPartsByPageNumber/`, {
+      axios.get(`api/CarParts/GetPartsByPageNumber/`, {
         params: {
         }
       })
@@ -60,7 +61,7 @@ export default new Vuex.Store({
     },
     /* eslint-enable no-unused-vars */
     login: ({ commit }, user) => {
-      axios.post(`/Users/Login/`, {
+      axios.post(`api/Users/Login/`, {
         password: user.password
       }).then((response) => {
         const token = `Bearer ${response.data.access_token}`;
