@@ -100,7 +100,7 @@ export default new Vuex.Store({
         deletePartById: ({ commit }, param) => {
             axios.delete(`api/CarParts/DeletePartById/?id=${param.id}`).then((response) => {
                 console.log(response.status);
-                commit('removePart', id);
+                commit('removePart', param.id);
             }).catch((e) => console.log(e));
         },
         /* eslint-enable no-unused-vars */

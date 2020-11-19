@@ -46,8 +46,6 @@ namespace AidaCarParts
                             ValidateIssuerSigningKey = true,
                         };
                     });
-
-            services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,16 +66,6 @@ namespace AidaCarParts
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            app.UseSpaStaticFiles();
-            app.UseSpa(configuration: builder =>
-            {
-                builder.Options.SourcePath = "client-app";
-                if (env.IsDevelopment())
-                {
-                    builder.UseVueDevelopmentServer();
-                }
             });
         }
     }
