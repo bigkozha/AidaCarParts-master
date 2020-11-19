@@ -13,14 +13,10 @@ namespace AidaCarParts.Controllers.api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Users : ControllerBase
+    public class UsersController : ControllerBase
     {
-        public Users()
-        {
 
-        }
-
-        private List<User> people = new List<User>
+        private readonly List<User> people = new List<User>
         {
             new User {Password="12345"},
         };

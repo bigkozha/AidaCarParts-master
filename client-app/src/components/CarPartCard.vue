@@ -27,7 +27,7 @@
           Вес: {{ weight }}<br />
           Доступность: {{ availibility }}<br />
       </v-card-text>
-      <v-btn color="orange lighten-2" text @click="editClicked" v-if="isAdmin"
+      <v-btn color="orange lighten-2" text @click="editClicked"
         >Редактировать
       </v-btn>
     </div>

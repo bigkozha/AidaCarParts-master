@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace AidaCarParts.Models
 {
@@ -10,7 +7,27 @@ namespace AidaCarParts.Models
     {
         public Context(DbContextOptions<Context> options) : base(options)
         { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Part>(part =>
+            {
+                part
+                .HasKey(p => p.Id);
+
+                part
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+                part
+                .Property(p => p.Numerate)
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Throw);
+            });
+        }
+
         public DbSet<Part> Parts { get; set; }
         public DbSet<SectionsAndSubsections> SectionsAndSubsections { get; set; }
+
+
     }
 }

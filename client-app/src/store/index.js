@@ -15,6 +15,9 @@ export default new Vuex.Store({
         setParts(state, data) {
             state.carPartItems = data.itemsOnPage.map(x => x);
         },
+        removePart(state, id) {
+            state.carPartItems = state.carPartItems.filter(p => p.id !== id);
+        },
         authSuccess(state, token, user) {
             state.status = 'success';
             state.token = token;
@@ -45,16 +48,58 @@ export default new Vuex.Store({
                 })
         },
         /* eslint-disable no-unused-vars */
-        editPartById: ({ commit }, id) => {
-            axios.get(`api/CarParts/GetPartsByPageNumber/`, {
-                params: {
-                }
+        updatePart: ({ commit }, partToUpdate) => {
+            console.log(partToUpdate.id)
+            axios.put(`api/CarParts/UpdatePart/`, {
+                id: partToUpdate.id,
+                partName: partToUpdate.partName,
+                note: partToUpdate.note,
+                unitOfMeasure: partToUpdate.unitOfMeasure,
+                volume: partToUpdate.volume,
+                weigth: partToUpdate.weigth,
+                availibility: partToUpdate.availibility,
+                cost: partToUpdate.cost,
+                oem: partToUpdate.oem,
+                section: partToUpdate.section,
+                subsection: partToUpdate.subsection,
+                costNumber: partToUpdate.costNumber,
+                picSrc: partToUpdate.picSrc,
+                partCode: partToUpdate.partCode,
+                sectionAndSubsectionId: partToUpdate.sectionAndSubsectionId,
             })
-                .then(() => {
+                .then((response) => {
+                    console.log(response.status);
                 })
                 .catch(e => {
                     console.log(e);
                 })
+        },
+        createPart: ({ commit }, partToCreate) => {
+            console.log(partToCreate)
+            axios.post(`api/CarParts/CreatePart/`, {
+                    partName: partToCreate.partName,
+                    note: partToCreate.note,
+                    unitOfMeasure: partToCreate.unitOfMeasure,
+                    volume: partToCreate.volume,
+                    weigth: partToCreate.weigth,
+                    availibility: partToCreate.availibility,
+                    cost: partToCreate.cost,
+                    oem: partToCreate.oem,
+                    section: partToCreate.section,
+                    subsection: partToCreate.subsection,
+                    costNumber: partToCreate.costNumber,
+                    picSrc: partToCreate.picSrc,
+                    partCode: partToCreate.partCode,
+                    sectionAndSubsectionId: partToCreate.sectionAndSubsectionId,
+            })
+                .then((response) => console.log(response.status))
+                .catch(e => console.log(e));
+        },
+        deletePartById: ({ commit }, param) => {
+            axios.delete(`api/CarParts/DeletePartById/?id=${param.id}`).then((response) => {
+                console.log(response.status);
+                commit('removePart', id);
+            }).catch((e) => console.log(e));
         },
         /* eslint-enable no-unused-vars */
         login: ({ commit }, user) => {
