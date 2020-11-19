@@ -76,7 +76,7 @@
                         </v-flex>
                     </v-layout>
                     <v-pagination v-model="page"
-                                  :length="10"
+                                  :length="carPartItemsLength"
                                   total-visible="7"
                                   next-icon="mdi-menu-right"
                                   prev-icon="mdi-menu-left"
@@ -322,6 +322,9 @@
             },
             isAdmin() {
                 return this.$store.getters.isLoggedIn;
+            },
+            carPartItemsLength() {
+                return this.$store.getters.carPartItemsLength;
             }
         },
         mounted() {

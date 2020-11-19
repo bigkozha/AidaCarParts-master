@@ -17,6 +17,9 @@ namespace AidaCarParts
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            using var client = new Context();
+            client.Database.EnsureCreated();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,8 +27,8 @@ namespace AidaCarParts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
+            services.AddEntityFrameworkSqlite()
+                .AddDbContext<Context>();
             services.AddControllers();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>

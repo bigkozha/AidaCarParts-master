@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         carPartItems: [],
+        carPartItemsLength: 0,
         status: '',
         token: localStorage.getItem('token') || '',
         user: {}
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     mutations: {
         setParts(state, data) {
             state.carPartItems = data.itemsOnPage.map(x => x);
+            state.carPartItemsLength = Math.ceil(data.totalItems / 15);
         },
         removePart(state, id) {
             state.carPartItems = state.carPartItems.filter(p => p.id !== id);
@@ -129,6 +131,7 @@ export default new Vuex.Store({
         carPartItems: (state) => () => {
             return state.carPartItems;
         },
+        carPartItemsLength: state => state.carPartItemsLength,
         isLoggedIn: state => state.status === 'success',
         authStatus: state => state.status,
     }
