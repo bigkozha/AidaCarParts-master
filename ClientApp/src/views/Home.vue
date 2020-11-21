@@ -84,7 +84,7 @@
                                   @input="changeCurrentPage"></v-pagination>
                 </v-container>
             </v-item-group>
-            <v-dialog v-model="dialog" persistent max-width="600px">
+            <v-dialog v-model="dialog" persistent max-width="600px" v-if="isAdmin">
                 <v-card>
                     <v-card-title>
                         <span class="headline">Редактирование</span>

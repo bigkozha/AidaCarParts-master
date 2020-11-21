@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AidaCarParts.Auth
 {
-    public class AuthOptions
+    public static class AuthOptions
     {
         public const string ISSUER = "AidaCarParts";
         public const string AUDIENCE = "AidaCarPartsClient";
