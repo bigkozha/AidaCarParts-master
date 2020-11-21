@@ -29,7 +29,8 @@
                 <v-btn color="orange"
                        class="white--text ma-1"
                        @click="createClicked"
-                       small>
+                       small
+                       v-if="isAdmin">
                     Создать
                 </v-btn>
                 <v-responsive max-width="260">
