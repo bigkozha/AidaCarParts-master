@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +41,7 @@ namespace AidaCarParts.Controllers.api
             if (!string.IsNullOrEmpty(searchWord))
             {
                 itemsOnPage = itemsOnPage
-                    .Where(i => i.PartName.Contains(searchWord));
+                    .Where(i => i.PartName.Contains(searchWord, System.StringComparison.InvariantCultureIgnoreCase));
             }
 
             var totalItems = await itemsOnPage
@@ -63,6 +61,7 @@ namespace AidaCarParts.Controllers.api
             return new JsonResult(result);
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("DeletePartById")]
         public async Task<IActionResult> DeletePartById([FromQuery] int id)
@@ -87,6 +86,7 @@ namespace AidaCarParts.Controllers.api
             }
         }
 
+        [Authorize]
         [HttpPut]
         [Route("UpdatePart")]
         public async Task<IActionResult> UpdatePart([FromBody] Part partToUpdate)
@@ -123,6 +123,7 @@ namespace AidaCarParts.Controllers.api
             }
         }
 
+        [Authorize]
         [HttpPost]
         [Route("CreatePart")]
         public async Task<IActionResult> CreatePart([FromBody] Part partToCreate)
