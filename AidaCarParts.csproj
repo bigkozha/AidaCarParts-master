@@ -9,6 +9,9 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <AssemblyName>AidaCarParts</AssemblyName>
     <RootNamespace>AidaCarParts</RootNamespace>
+    <UserSecretsId>fe6f52ca-af52-488d-a333-bd937ff8de43</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
 	</PropertyGroup>
 
 	<ItemGroup>
