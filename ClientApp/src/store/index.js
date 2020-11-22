@@ -132,7 +132,10 @@ export default new Vuex.Store({
             return state.carPartItems;
         },
         carPartItemsLength: state => state.carPartItemsLength,
-        isLoggedIn: state => state.status === 'success',
+        isLoggedIn: state => {
+            console.log(state.token)
+            return state.token !== 'Bearer ' && state.token !== '';
+        },
         authStatus: state => state.status,
     }
 })
