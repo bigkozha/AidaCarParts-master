@@ -111,6 +111,7 @@ namespace AidaCarParts.Controllers.api
                 part.Volume = partToUpdate.Volume;
                 part.Weight = partToUpdate.Weight;
                 part.PartName = partToUpdate.PartName;
+                part.PicUrl = partToUpdate.PicUrl;
 
                 _context.Update(part);
                 await _context.SaveChangesAsync();

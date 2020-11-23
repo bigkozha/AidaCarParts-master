@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="250" max-height="750">
-    <v-img :src="picSrc" max-height="200px"></v-img>
+    <v-img :src="picUrl" max-height="200px"></v-img>
     <v-card-title> {{ partName }} </v-card-title>
     <v-card-subtitle>
       Код товара: {{ partCode }}<br />
@@ -49,7 +49,7 @@ export default {
     section: String,
     subsection: String,
     costNumber: String,
-    picSrc: String,
+    picUrl: String,
     numerate: String,
     partCode: String,
     sectionAndSubsectionId: Number,
@@ -67,7 +67,7 @@ export default {
   computed: {
     isAdmin() {
       return this.$store.getters.isLoggedIn;
-    }
+    },
   }
 };
 </script>

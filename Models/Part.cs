@@ -23,5 +23,6 @@ namespace AidaCarParts.Models
         public string Section { get; set; }
         public string Subsection { get; set; }
         public int SectionAndSubsectionId { get; set; }
+        public string PicUrl { get; set; }
     }
 }

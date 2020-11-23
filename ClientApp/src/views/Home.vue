@@ -69,7 +69,7 @@
                                          v-bind:section="n.section"
                                          v-bind:subsection="n.subsection"
                                          v-bind:costNumber="n.costNumber"
-                                         v-bind:picSrc="n.picSrc"
+                                         v-bind:picUrl="n.picUrl"
                                          v-bind:partCode="n.partCode"
                                          v-bind:weight="n.weight"
                                          @editClicked="editClicked">
@@ -98,6 +98,11 @@
                                                   v-model="editItem.partName"
                                                   required></v-text-field>
                                 </v-col>
+                                <v-col cols="12">
+                                    <v-text-field label="Ссылка на изображение"
+                                                  v-model="editItem.picUrl"
+                                                  ></v-text-field>
+                                </v-col>
                                 <v-col cols="12" sm="6" md="4">
                                     <v-text-field label="Применение"
                                                   v-model="editItem.note"></v-text-field>
@@ -117,10 +122,6 @@
                                 <v-col cols="12" sm="6" md="4">
                                     <v-text-field label="Обьем"
                                                   v-model="editItem.volume"></v-text-field>
-                                </v-col>
-                                <v-col cols="12" sm="6" md="4">
-                                    <v-text-field label="Ед. измерения"
-                                                  v-model="editItem.unitOfMeasure"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="6" md="4">
                                     <v-text-field label="Вес"
@@ -163,6 +164,7 @@
 
 <script>
     import CarPartCard from "../components/CarPartCard";
+    import axios from 'axios';
     export default {
         components: {
             CarPartCard,
@@ -313,7 +315,7 @@
                 section: null,
                 subsection: null,
                 costNumber: null,
-                picSrc: null,
+                picUrl: null,
                 partCode: null,
             },
         }),
@@ -330,6 +332,7 @@
         },
         mounted() {
             this.changeCurrentPage();
+            console.log(axios.defaults.headers.common['Authorization'])
         },
         methods: {
             changeCurrentPage() {
@@ -369,7 +372,7 @@
                     section: this.editItem.section,
                     subsection: this.editItem.subsection,
                     costNumber: this.editItem.costNumber,
-                    picSrc: this.editItem.picSrc,
+                    picUrl: this.editItem.picUrl,
                     partCode: this.editItem.partCode,
                     sectionAndSubsectionId: this.editItem.sectionAndSubsectionId,
                 }).then(() => {
@@ -396,7 +399,7 @@
                         section: partToUpdate.section,
                         subsection: partToUpdate.subsection,
                         costNumber: partToUpdate.costNumber,
-                        picSrc: partToUpdate.picSrc,
+                        picUrl: partToUpdate.picUrl,
                         partCode: partToUpdate.partCode,
                         sectionAndSubsectionId: partToUpdate.sectionAndSubsectionId,
                     })
@@ -414,7 +417,7 @@
                             section: null,
                             subsection: null,
                             costNumber: null,
-                            picSrc: null,
+                            picUrl: null,
                             partCode: null,
                         };
                         this.dialog = false;
@@ -437,7 +440,7 @@
                         section: null,
                         subsection: null,
                         costNumber: null,
-                        picSrc: null,
+                        picUrl: null,
                         partCode: null,
                     };
                     this.dialog = false;
@@ -463,7 +466,7 @@
                     section: null,
                     subsection: null,
                     costNumber: null,
-                    picSrc: null,
+                    picUrl: null,
                     partCode: null,
                 };
                 this.isCreate = true;

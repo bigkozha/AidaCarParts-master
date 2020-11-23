@@ -65,7 +65,7 @@ export default new Vuex.Store({
                 section: partToUpdate.section,
                 subsection: partToUpdate.subsection,
                 costNumber: partToUpdate.costNumber,
-                picSrc: partToUpdate.picSrc,
+                picUrl: partToUpdate.picUrl,
                 partCode: partToUpdate.partCode,
                 sectionAndSubsectionId: partToUpdate.sectionAndSubsectionId,
             })
@@ -77,7 +77,6 @@ export default new Vuex.Store({
                 })
         },
         createPart: ({ commit }, partToCreate) => {
-            console.log(partToCreate)
             axios.post(`api/CarParts/CreatePart/`, {
                     partName: partToCreate.partName,
                     note: partToCreate.note,
@@ -133,7 +132,11 @@ export default new Vuex.Store({
         },
         carPartItemsLength: state => state.carPartItemsLength,
         isLoggedIn: state => {
-            return state.token !== 'Bearer ' && state.token !== '';
+            let result = state.token !== 'Bearer ' && state.token !== '';
+            if (result) {
+                axios.defaults.headers.common['Authorization'] = state.token;
+            }
+            return result;
         },
         authStatus: state => state.status,
     }
