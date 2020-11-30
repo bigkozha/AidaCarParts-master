@@ -404,22 +404,7 @@
                         sectionAndSubsectionId: partToUpdate.sectionAndSubsectionId,
                     })
                     .then(() => {
-                        this.editItem = {
-                            id: null,
-                            partName: null,
-                            note: null,
-                            unitOfMeasure: null,
-                            volume: null,
-                            weigth: null,
-                            availibility: null,
-                            cost: null,
-                            oem: null,
-                            section: null,
-                            subsection: null,
-                            costNumber: null,
-                            picUrl: null,
-                            partCode: null,
-                        };
+                        this.setEditItemNull();
                         this.dialog = false;
                     }).catch((e) => console.log(e));
             },
@@ -427,22 +412,7 @@
                 this.$store.dispatch('deletePartById', {
                     id: this.editItem.id,
                 }).then(() => {
-                    this.editItem = {
-                        id: null,
-                        partName: null,
-                        note: null,
-                        unitOfMeasure: null,
-                        volume: null,
-                        weigth: null,
-                        availibility: null,
-                        cost: null,
-                        oem: null,
-                        section: null,
-                        subsection: null,
-                        costNumber: null,
-                        picUrl: null,
-                        partCode: null,
-                    };
+                    this.setEditItemNull();
                     this.dialog = false;
                 }).catch((e) => console.log(e));
             },
@@ -453,6 +423,15 @@
                     .filter((i) => i.index !== null);
             },
             createClicked() {
+                this.setEditItemNull();
+                this.isCreate = true;
+                this.dialog = true;
+            },
+            closeClicked() {
+                this.isCreate = false;
+                this.dialog = false;
+            },
+            setEditItemNull() {
                 this.editItem = {
                     id: null,
                     partName: null,
@@ -469,13 +448,7 @@
                     picUrl: null,
                     partCode: null,
                 };
-                this.isCreate = true;
-                this.dialog = true;
-            },
-            closeClicked() {
-                this.isCreate = false;
-                this.dialog = false;
-            },
+            }
         },
     };
 </script>
