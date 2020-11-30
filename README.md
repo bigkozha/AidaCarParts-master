@@ -9,7 +9,7 @@ NodeJS >= 8.9\
 Vue CLI >= 4.0\
 VS 2017/19
 
-docker build -t aidacarparts:latest . \
+docker build -t aidacarparts:latest . 
 
 !For local debug run!\
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p password \
