@@ -41,7 +41,7 @@ namespace AidaCarParts.Controllers.api
             if (!string.IsNullOrEmpty(searchWord))
             {
                 itemsOnPage = itemsOnPage
-                    .Where(i => i.PartName.Contains(searchWord, System.StringComparison.InvariantCultureIgnoreCase));
+                    .Where(i => i.PartName.Contains(searchWord));
             }
 
             var totalItems = await itemsOnPage
